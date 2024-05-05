@@ -1,31 +1,48 @@
 <?php
 
 namespace App\Repositories;
+use App\Models\Child;
+use Illuminate\Database\Eloquent\Collection;
 
 class EloquentChildrenRepository {
-    
-       // Propiedades
-    public $name;
-    public $lastName;
-    public $age;
-    public $schoolGrade;
-    public $mother;
-    public $father;
-       
-    // Metodo constructor
-    public function __construct(string $name, string $lastName, int $age, string $schoolGrade, string $mother, string $father){
-        
-        $this->name = $name;
-        $this->lastName = $lastName;
-        $this->age = $age;
-        $this->schoolGrade = $schoolGrade;
-        $this->mother = $mother;
-        $this->father = $father;
+
+    public function store(string $name, string $lastName, int $age, string $schoolGrade, string $mother, string $father): void
+    {
+        Child::create([
+            'name'=> $name,
+            'last_name'=> $lastName,
+            'age'=> $age,
+            'school_grade'=> $schoolGrade,
+            'mother'=> $mother,
+            'father'=> $father
+        ]);
     }
 
-    // Metodo saludo
-    public function greeting(){
+    public function list(): Collection
+    {   
+        $children = Child::all();
 
-        return "Hola, soy $this->name $this->lastName, tengo $this->age años y estoy en el grado $this->schoolGrade.\nMis padres son: $this->mother y $this->father.\n\n";
+        return $children;
+    }
+
+    public function update($childId, $name, $lastName, $age, $schoolGrade, $mother, $father): void
+    {
+        $child = Child::find($childId);
+
+        $child->name = $name;
+        $child->last_name = $lastName;
+        $child->age = $age;
+        $child->school_grade = $schoolGrade;
+        $child->mother = $mother;
+        $child->father = $father;    
+
+        $child->save();
+    }
+
+    public function delete($childId): void
+    {
+        $child = Child::find($childId);
+
+        $child->delete();
     }
 }

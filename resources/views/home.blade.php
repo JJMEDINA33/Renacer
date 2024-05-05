@@ -53,13 +53,14 @@
     </header>
     <nav>
         <a href="#">Inicio</a>
+        <a href= "{{ url('childish') }}">Ministerio Infantil</a>
         <a href="#">Acerca de Nosotros</a>
         <a href="#">Servicios</a>
         <a href="#">Contacto</a>
     </nav>
     <section>
         <h2>Bienvenido a nuestra comunidad</h2>
-        <p>Somos una iglesia dedicada a seguir a Jesucristo y a compartir su amor con el mundo.</p>
+        <p>Somos una iglesia cristocentrica con la vision del libro de Los Hechos.</p>
         <p>¡Te invitamos a unirte a nosotros en adoración y servicio!</p>
     </section>
     <footer>
